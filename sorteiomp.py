@@ -63,21 +63,41 @@ div.stButton > button:hover {
     border-radius: 10px;
 }
 
+/* Estilização do upload moderno (Opção A) */
+.custom-upload > label {
+    background-color: #1a1a5a;
+    padding: 25px;
+    width: 100%;
+    border-radius: 20px;
+    border: 2px dashed #3d4ed7;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    display: block;
+    transition: 0.3s;
+}
+
+.custom-upload > label:hover {
+    background-color: #23236d;
+    border-color: #ff8070;
+}
+
+.custom-upload input[type="file"] {
+    display: none;
+}
+
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
-# LOGO DO ISAAC (AGORA NO CANTO ESQUERDO)
+# LOGO DO ISAAC CENTRALIZADA
+# (se quiser mover para o canto depois, posso ajustar)
 # ------------------------------------------------------------
-st.markdown(
-    """
-    <div style="display:flex; align-items:center;">
-        <img src="logoisaac.svg" width="100">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("logoisaac.svg", width=100)
 
 # ------------------------------------------------------------
 # TÍTULO (AGORA H2)
@@ -85,10 +105,15 @@ st.markdown(
 st.markdown("<h2>🎉 Sorteio Matrícula Premiada</h2>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------
-# UPLOAD DO CSV
+# UPLOAD DO CSV — OPÇÃO A (CAIXA PREMIUM)
 # ------------------------------------------------------------
 
-file = st.file_uploader("Escolha o arquivo CSV", type=["csv"])
+st.markdown(
+    '<div class="custom-upload"><label>📁 Faça upload do arquivo com as escolas participantes</label></div>',
+    unsafe_allow_html=True
+)
+
+file = st.file_uploader("", type=["csv"])  # precisa ser vazio para não duplicar o label
 
 if file is not None:
     df = pd.read_csv(file)
