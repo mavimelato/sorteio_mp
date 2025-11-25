@@ -25,31 +25,45 @@ html, body, .stApp {
     background-color: #010038 !important;
 }
 
+/* Remove fundo escuro que apareceu no menu */
+section[data-testid="stHeader"] {
+    background: rgba(0,0,0,0) !important;
+}
 
-/* Logo central */
+/* Centralização geral */
+.main-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Logo */
 .header-logo {
     width: 140px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 25px;
+    margin: 25px auto 10px auto;
 }
 
-
-/* Texto principal */
+/* Texto principal (MENOR AGORA) */
 .hero-title {
     color: white;
-    font-size: 48px;
+    font-size: 34px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .hero-sub {
     color: white;
-    font-size: 22px;
-    margin-top: 15px;
+    font-size: 19px;
+    margin-top: 12px;
 }
 
+/* Imagem menor */
+.hero-img {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    display: block;
+}
 
 /* Botões */
 div.stButton > button {
@@ -61,18 +75,20 @@ div.stButton > button {
     font-size: 18px;
     border: none;
     transition: 0.2s;
+    display: block;
+    margin: auto;
 }
 
 div.stButton > button:hover {
     transform: scale(1.04);
 }
 
-
-/* Upload bonito */
+/* Upload bonito — CENTRALIZADO */
 .custom-upload > label {
     background-color: #1a1a5a;
     padding: 25px;
-    width: 100%;
+    width: 80%;
+    margin: auto;
     border-radius: 20px;
     border: 2px dashed #3d4ed7;
     text-align: center;
@@ -98,6 +114,8 @@ div.stButton > button:hover {
 # =============================================================
 # 1) LOGO NO TOPO
 # =============================================================
+st.markdown('<div class="main-container">', unsafe_allow_html=True)
+
 st.image("logoisaac.svg", use_column_width=False, width=160)
 
 # =============================================================
@@ -107,7 +125,7 @@ st.image("logoisaac.svg", use_column_width=False, width=160)
 col_img, col_txt = st.columns([1.1, 1])
 
 with col_img:
-    st.image("meninasorteio.webp", use_column_width=True)
+    st.image("meninasorteio.webp", use_column_width=False, width=800)
 
 with col_txt:
     st.markdown("""
@@ -129,14 +147,18 @@ with col_txt:
     st.markdown("<br>", unsafe_allow_html=True)
 
 # =============================================================
-# 3) ÁREA DO SORTEIO — Upload + Botão + Resultado
+# 3) ÁREA DO SORTEIO — Centralizada
 # =============================================================
 
 st.markdown("<hr style='opacity:0.3;'>", unsafe_allow_html=True)
-st.markdown("<h2 style='color:white; text-align:center;'>🎉 Realizar Sorteio</h2>", unsafe_allow_html=True)
+
+st.markdown(
+    "<h2 style='color:white; text-align:center;'>🎉 Realizar Sorteio</h2>",
+    unsafe_allow_html=True
+)
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Caixa premium
+# Caixa premium (centralizada)
 st.markdown(
     '<div class="custom-upload"><label>📁 Envie o arquivo CSV com as escolas participantes</label></div>',
     unsafe_allow_html=True
@@ -144,11 +166,15 @@ st.markdown(
 
 file = st.file_uploader("", type=["csv"])
 
+# ----------- se CSV enviado -----------
 if file is not None:
     df = pd.read_csv(file)
     st.success("CSV carregado com sucesso!")
 
-    if st.button("Sortear agora!"):
+    # BOTÃO CENTRALIZADO
+    botao = st.button("Sortear agora!")
+
+    if botao:
         tickets = []
 
         for _, row in df.iterrows():
@@ -160,8 +186,8 @@ if file is not None:
         random.seed()
         vencedor = random.choice(tickets)
 
-        # Animação
         placeholder = st.empty()
+
         nomes_temp = [row["branch_name"] for _, row in df.iterrows()]
 
         for i in range(35):
@@ -172,10 +198,8 @@ if file is not None:
             )
             time.sleep(0.05 + (i * 0.015))
 
-        # Moldura final
         moldura = f"""
         <div style="
-            border: 0;
             border-radius: 25px;
             padding: 3px;
             background: linear-gradient(82deg,#ff8070,#3d4ed7);
@@ -199,3 +223,5 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
+st.markdown("</div>", unsafe_allow_html=True)
