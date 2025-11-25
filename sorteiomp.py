@@ -21,13 +21,20 @@ custom_css = """
     --white: #ffffff;
 }
 
-body, .stApp {
+html, body, .stApp {
     background-color: #010038 !important;
 }
 
-/* Títulos */
-h1, h2, h3 {
-    color: #ffffff !important;
+/* Remove a barra superior cinza padrão do Streamlit */
+header, .css-18ni7ap, .css-1dp5vir, .st-emotion-cache-18ni7ap {
+    background-color: #010038 !important;
+    box-shadow: none !important;
+}
+
+/* Diminuir tamanho do título (h2) */
+h2 {
+    font-size: 1.8rem !important;
+    color: white !important;
     text-align: center;
 }
 
@@ -61,38 +68,32 @@ div.stButton > button:hover {
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
-# LOGOS (opcional)
+# LOGO DO ISAAC (AGORA NO CANTO ESQUERDO)
 # ------------------------------------------------------------
-col1, col2, col3 = st.columns([1,2,1])
-with col2:
-     st.image("logoisaac.svg", width=220)
+st.markdown(
+    """
+    <div style="display:flex; align-items:center;">
+        <img src="logoisaac.svg" width="100">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # ------------------------------------------------------------
-# TÍTULO
+# TÍTULO (AGORA H2)
 # ------------------------------------------------------------
-st.title("🎉 Sorteio Matrícula Premiada")
-st.markdown("<h3 style='color:white;'>Boa sorte a todos os participantes!</h3>", unsafe_allow_html=True)
+st.markdown("<h2>🎉 Sorteio Matrícula Premiada</h2>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------
 # UPLOAD DO CSV
 # ------------------------------------------------------------
-st.markdown("<p style='color:white;'>Faça upload do CSV contendo: cnpj, branch_name, numeros_da_sorte</p>", unsafe_allow_html=True)
 
 file = st.file_uploader("Escolha o arquivo CSV", type=["csv"])
 
 if file is not None:
     df = pd.read_csv(file)
 
-    # Apenas mensagem simples conforme Jurídico
     st.success("CSV carregado com sucesso!")
-
-    total_vencedores = st.number_input(
-        "Quantos vencedores sortear?",
-        min_value=1,
-        max_value=len(df),
-        value=1,
-        step=1
-    )
 
     if st.button("Sortear!"):
         # Criar tickets
@@ -104,7 +105,7 @@ if file is not None:
             }] * int(row["numeros_da_sorte"]))
 
         random.seed()
-        vencedores = random.sample(tickets, k=total_vencedores)
+        vencedor = random.choice(tickets)  # sempre 1 vencedor
 
         st.markdown("### 🏆 Resultado do Sorteio")
 
@@ -117,16 +118,14 @@ if file is not None:
         for i in range(35):
             nome_rodando = random.choice(nomes_temp)
             placeholder.markdown(
-                f"<h2 style='color:white; text-align:center;'>{nome_rodando}</h2>",
+                f"<h3 style='color:white; text-align:center;'>{nome_rodando}</h3>",
                 unsafe_allow_html=True
             )
-            time.sleep(0.05 + (i * 0.015))  # desacelera progressivamente
+            time.sleep(0.05 + (i * 0.015))
 
         # ------------------------------------------------------------
         # EXIBIR VENCEDOR COM MOLDURA ESTILO 3
         # ------------------------------------------------------------
-        vencedor = vencedores[0]  # sempre mostrar o primeiro (ou loop para vários)
-
         moldura_html = f"""
         <div style="
             border: 0;
@@ -144,7 +143,7 @@ if file is not None:
                 color:white;
                 text-align:center;
             ">
-                <h2 style='margin-bottom:10px;'>🎉 Vencedor</h2>
+                <h3 style='margin-bottom:10px;'>E o vencedor é...</h3>
                 <h3>{vencedor['branch_name']}</h3>
                 <p style='font-size:20px; margin-top:10px;'>CNPJ: <b>{vencedor['cnpj']}</b></p>
             </div>
