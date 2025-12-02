@@ -196,12 +196,13 @@ if file is not None:
             ">
                 <h3 style='margin-bottom:10px;'>🏆 Escola Vencedora</h3>
                 <h3>{vencedor['branch_name']}</h3>
-                <p style='font-size:18px; margin-top:10px;'>CNPJ: <b>{formatar_cnpj(vencedor['cnpj']}</b></p>
+                <p style='font-size:18px; margin-top:10px;'>CNPJ: <b>{formatar_cnpj(vencedor['cnpj'])}</b></p>
             </div>
         </div>
         """
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
