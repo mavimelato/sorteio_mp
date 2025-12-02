@@ -103,30 +103,24 @@ div.stButton > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
-
-
-# ------------------------------------------------------------
-# TOPO — LOGO + TÍTULO
-# ------------------------------------------------------------
-# ------------------------------------------------------------
 # LOGO CENTRALIZADO
 # ------------------------------------------------------------
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.image("logoisaac.svg", width=120)  # agora funciona!
+st.image("logoisaac.svg", width=90)  # agora funciona!
 
 # ------------------------------------------------------------
 # TÍTULO CENTRALIZADO
 # ------------------------------------------------------------
 st.markdown("""
-<h2 style='
+<h3 style='
     text-align:center;
     color:white;
     font-family: Halcyon, Verdana, sans-serif;
     margin-top: -10px;
 '>
     Realizar sorteio
-</h2>
+</h3>
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
@@ -213,6 +207,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
