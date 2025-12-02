@@ -8,7 +8,7 @@ import time
 # ------------------------------------------------------------
 st.set_page_config(
     page_title="Sorteio | Matrícula Premiada",
-    layout="centered"   # <<< TUDO CENTRALIZADO
+    layout="centered" 
 )
 
 # ------------------------------------------------------------
@@ -105,8 +105,8 @@ div.stButton > button:hover {
 # ------------------------------------------------------------
 st.markdown("""
 <div class="title-container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Isaac_logo.svg" width="45">
-    <span class="title-text">Matrícula Premiada — Sorteio Oficial</span>
+    <img src="logoisaac.svg" width="90">
+    <span class="title-text">Realizar sorteio</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -189,12 +189,13 @@ if file is not None:
                 text-align:center;
                 font-family: Halcyon, Verdana, sans-serif;
             ">
-                <h2 style='margin-bottom:10px;'>🏆 Escola Vencedora</h2>
+                <h3 style='margin-bottom:10px;'>🏆 Escola Vencedora</h3>
                 <h3>{vencedor['branch_name']}</h3>
-                <p style='font-size:20px; margin-top:10px;'>CNPJ: <b>{vencedor['cnpj']}</b></p>
+                <p style='font-size:18px; margin-top:10px;'>CNPJ: <b>{vencedor['cnpj']}</b></p>
             </div>
         </div>
         """
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
