@@ -3,6 +3,11 @@ import pandas as pd
 import random
 import time
 
+def formatar_cnpj(cnpj):
+    """Formatar CNPJ para 00.000.000/0000-00"""
+    cnpj = str(cnpj).zfill(14)  # garante 14 dígitos
+    return f"{cnpj[0:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}"
+
 # ------------------------------------------------------------
 # CONFIG DA PÁGINA
 # ------------------------------------------------------------
@@ -191,11 +196,12 @@ if file is not None:
             ">
                 <h3 style='margin-bottom:10px;'>🏆 Escola Vencedora</h3>
                 <h3>{vencedor['branch_name']}</h3>
-                <p style='font-size:18px; margin-top:10px;'>CNPJ: <b>{vencedor['cnpj']}</b></p>
+                <p style='font-size:18px; margin-top:10px;'>CNPJ: <b>{formatar_cnpj(vencedor['cnpj']}</b></p>
             </div>
         </div>
         """
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
