@@ -8,14 +8,6 @@ def formatar_cnpj(cnpj):
     """Formatar CNPJ para 00.000.000/0000-00"""
     cnpj = str(cnpj).zfill(14)  # garante 14 dígitos
     return f"{cnpj[0:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}"
-
-def load_svg_base64(path):
-    with open(path, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
-logo_base64 = load_svg_base64("logoisaac.svg")
-
 # ------------------------------------------------------------
 # CONFIG DA PÁGINA
 # ------------------------------------------------------------
@@ -116,16 +108,26 @@ div.stButton > button:hover {
 # ------------------------------------------------------------
 # TOPO — LOGO + TÍTULO
 # ------------------------------------------------------------
-st.markdown("""
-<div class="title-container">
-    <img src="data:image/svg+xml;base64,{logo_base64}" width="90">
-    <span class="title-text">Realizar sorteio</span>
-</div>
-""", unsafe_allow_html=True)
-
+# ------------------------------------------------------------
+# LOGO CENTRALIZADO
+# ------------------------------------------------------------
 st.markdown("<br>", unsafe_allow_html=True)
 
+st.image("logoisaac.svg", width=120)  # agora funciona!
 
+# ------------------------------------------------------------
+# TÍTULO CENTRALIZADO
+# ------------------------------------------------------------
+st.markdown("""
+<h2 style='
+    text-align:center;
+    color:white;
+    font-family: Halcyon, Verdana, sans-serif;
+    margin-top: -10px;
+'>
+    Realizar sorteio
+</h2>
+""", unsafe_allow_html=True)
 
 # ------------------------------------------------------------
 # UPLOAD CENTRALIZADO
@@ -211,6 +213,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
