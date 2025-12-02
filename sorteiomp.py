@@ -69,6 +69,10 @@ div.stButton > button:hover {
     transform: scale(1.04);
 }
 
+svg {
+    overflow: visible !important;
+}
+
 /* Upload estilizado */
 .custom-upload > label {
     background-color: #1a1a5a;
@@ -207,6 +211,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
