@@ -60,7 +60,7 @@ div.stButton > button {
     font-weight: 600;
     font-size: 18px;
     border: none;
-    width: 260px;
+    width: 230px;
     transition: 0.15s;
     margin: 0 auto;
 }
@@ -211,5 +211,6 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
