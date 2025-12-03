@@ -119,9 +119,9 @@ div.stButton > button:hover {
 # TÍTULO
 # ------------------------------------------------------------
 st.markdown("""
-<h3 style='text-align:center;color:white;'>
+<h2 style='text-align:center;color:white;'>
     Realizar sorteio
-</h3>
+</h2>
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
@@ -198,6 +198,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
