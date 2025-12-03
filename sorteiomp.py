@@ -29,7 +29,7 @@ components.html("""
                 img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';
                 img.className = 'mp-logo';
                 img.style.height = '45px';
-                img.style.marginLeft = '10px';
+                img.style.marginLeft = '60px';
                 img.style.objectFit = 'contain';
                 header.prepend(img);
                 clearInterval(checkHeader);
@@ -200,3 +200,4 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
