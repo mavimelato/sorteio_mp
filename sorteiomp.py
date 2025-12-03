@@ -52,11 +52,6 @@ html, body, .stApp {
     object-fit: contain;
 }
 
-.logo-center img {
-    height: 80px;
-    object-fit: contain;
-}
-
 /* BOTÕES */
 div.stButton > button {
     background-image: linear-gradient(82deg, #ff8070, #3d4ed7);
@@ -203,4 +198,5 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
