@@ -40,6 +40,11 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
+/* Remove espaçamento do topo quando a navbar some */
+section.main > div {
+    padding-top: 0 !important;
+}
+
 /* LOGO CENTRALIZADA */
 .logo-center {
     text-align: center;
@@ -50,11 +55,6 @@ html, body, .stApp {
 .logo-center img {
     height: 180px;
     object-fit: contain;
-}
-
-/* Remove espaçamento do topo quando a navbar some */
-section.main > div {
-    padding-top: 0 !important;
 }
 
 /* BOTÕES */
@@ -203,6 +203,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
