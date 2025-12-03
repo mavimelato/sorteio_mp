@@ -15,17 +15,8 @@ def formatar_cnpj(cnpj):
 st.set_page_config(
     page_title="Sorteio | Matrícula Premiada",
     page_icon="https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png",
-    layout="centered"
+    layout="wide"
 )
-
-# REMOVER NAVBAR NATIVA
-st.markdown("""
-<style>
-header[data-testid="stHeader"] {
-    display: none !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # ------------------------------------------------------------
 # CSS GLOBAL
@@ -40,39 +31,76 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
-/* REMOVE DEFINITIVAMENTE O ESPAÇO SUPERIOR DO APP */
-section.main > div.block-container {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}
-
+/* REMOVE COMPLETAMENTE O ESPAÇO SUPERIOR */
+section.main > div.block-container,
+div.block-container,
+main,
 section[data-testid="stMain"] > div {
     padding-top: 0 !important;
-}
-
-div.block-container {
-    padding-top: 0 !important;
     margin-top: 0 !important;
 }
 
-/* força remover qualquer espaço restante */
-main {
-    padding-top: 0 !important;
-}
-
-/* LOGO CENTRALIZADA */
-.logo-center {
-    text-align: center;
+/* HEADER EM GRID (LOGO ESQ + TÍTULO/UPLOAD DIR) */
+.header-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    align-items: center;
+    width: 100%;
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    gap: 40px;
 }
 
-.logo-center img {
-    height: 180px;
-    object-fit: contain;
+.header-left {
+    text-align: left;
 }
 
-/* BOTÕES */
+.header-logo {
+    width: 100%;
+    max-width: 340px;
+}
+
+.header-right {
+    text-align: left;
+}
+
+.header-title {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+/* UPLOAD LABEL */
+.custom-upload > label {
+    background-color: #1a1a5a;
+    padding: 20px;
+    width: 90%;
+    border-radius: 20px;
+    border: 2px dashed #3d4ed7;
+    text-align: left;
+    color: white !important;
+    cursor: pointer;
+    font-size: 17px;
+    display: block;
+    transition: 0.3s;
+}
+
+.custom-upload > label:hover {
+    background-color: #23236d;
+    border-color: #ff8070;
+}
+
+.custom-upload input[type="file"] {
+    display: none;
+}
+
+.success-center {
+    text-align: center;
+}
+
+/* BOTÃO */
 div.stButton > button {
     background-image: linear-gradient(82deg, #ff8070, #3d4ed7);
     color: #ffffff;
@@ -90,68 +118,35 @@ div.stButton > button:hover {
     transform: scale(1.04);
 }
 
-/* UPLOAD */
-.custom-upload > label {
-    background-color: #1a1a5a;
-    padding: 20px;
-    width: 80%;
-    border-radius: 20px;
-    border: 2px dashed #3d4ed7;
-    text-align: center;
-    color: white !important;
-    cursor: pointer;
-    font-size: 17px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: 0.3s;
-}
-
-.custom-upload > label:hover {
-    background-color: #23236d;
-    border-color: #ff8070;
-}
-
-.custom-upload input[type="file"] {
-    display: none;
-}
-
-.success-center {
-    text-align: center;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
-# LOGO CENTRALIZADA
+# HEADER (LOGO + TÍTULO + LABEL UPLOAD)
 # ------------------------------------------------------------
 st.markdown(
     """
-    <div class="logo-center">
-        <img src="https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png">
+    <div class="header-grid">
+        
+        <!-- LOGO ESQUERDA -->
+        <div class="header-left">
+            <img src="https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png" class="header-logo">
+        </div>
+
+        <!-- TÍTULO + LABEL UPLOAD DIREITA -->
+        <div class="header-right">
+            <h2 class="header-title">Realizar sorteio</h2>
+            <div class="custom-upload"><label>📁 Envie o arquivo CSV com as escolas participantes</label></div>
+        </div>
+
     </div>
     """,
     unsafe_allow_html=True
 )
 
 # ------------------------------------------------------------
-# TÍTULO
+# FILE UPLOADER (CAMINHO REAL)
 # ------------------------------------------------------------
-st.markdown("""
-<h2 style='text-align:center;color:white; margin-top: 5px;'>
-    Realizar sorteio
-</h2>
-""", unsafe_allow_html=True)
-
-# ------------------------------------------------------------
-# UPLOAD
-# ------------------------------------------------------------
-st.markdown(
-    '<div class="custom-upload"><label>📁 Envie o arquivo CSV com as escolas participantes</label></div>',
-    unsafe_allow_html=True
-)
-
 file = st.file_uploader("", type=["csv"])
 
 # ------------------------------------------------------------
@@ -218,13 +213,3 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
-
-
-
-
-
-
-
-
-
-
