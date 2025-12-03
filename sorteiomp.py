@@ -6,7 +6,7 @@ import base64
 
 def formatar_cnpj(cnpj):
     """Formatar CNPJ para 00.000.000/0000-00"""
-    cnpj = str(cnpj).zfill(14)  # garante 14 dígitos
+    cnpj = str(cnpj).zfill(14)
     return f"{cnpj[0:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}"
 
 # ------------------------------------------------------------
@@ -34,43 +34,36 @@ html, body, .stApp {
 /* NAVBAR ESCURA + LOGO MP     */
 /* =========================== */
 header[data-testid="stHeader"] {
-    background-color: #000025 !important;  /* NAVBAR ESCURA */
+    background-color: #000025 !important;
     height: 70px;
     display: flex;
     align-items: center;
-    padding-left: 15px;
+    padding-left: 12px;
     box-shadow: none !important;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Remove fundo transparente extra */
+/* Remove fundo extra */
 .st-emotion-cache-18ni7ap, .st-emotion-cache-1dp5vir {
     background: transparent !important;
 }
 
-/* Insere a logo dentro da navbar */
+/* Insere a logo na navbar */
 header[data-testid="stHeader"]::before {
     content: "";
     background-image: url('logomp.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left center;
-    width: 140px;   /* ajuste do tamanho */
-    height: 50px;
-    margin-right: 20px;
+    width: 120px;
+    height: 45px;
+    display: inline-block;
 }
 
 /* =========================== */
-/* RESTANTE DO ESTILO GLOBAL   */
+/* ESTILOS DO APP              */
 /* =========================== */
-
-/* TÍTULO + LOGO */
-.title-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 5px;
-}
 
 .title-text {
     color: white;
@@ -78,7 +71,6 @@ header[data-testid="stHeader"]::before {
     font-weight: 700;
 }
 
-/* Botões */
 div.stButton > button {
     background-image: linear-gradient(82deg, #ff8070, #3d4ed7);
     color: #ffffff;
@@ -97,11 +89,7 @@ div.stButton > button:hover {
     transform: scale(1.04);
 }
 
-svg {
-    overflow: visible !important;
-}
-
-/* Upload estilizado */
+/* Upload */
 .custom-upload > label {
     background-color: #1a1a5a;
     padding: 20px;
@@ -127,18 +115,12 @@ svg {
     display: none;
 }
 
-/* Centralizar sucesso */
 .success-center {
     text-align: center;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
-# LOGO CENTRALIZADO NA PÁGINA
-# ------------------------------------------------------------
-st.markdown("<br>", unsafe_allow_html=True)
-st.image("logomp.png", width=150)
 
 # ------------------------------------------------------------
 # TÍTULO
@@ -148,7 +130,6 @@ st.markdown("""
     text-align:center;
     color:white;
     font-family: Halcyon, Verdana, sans-serif;
-    margin-top: -10px;
 '>
     Realizar sorteio
 </h3>
@@ -179,8 +160,8 @@ if file is not None:
 
     centered_btn = st.container()
     with centered_btn:
-        btn_col = st.columns([1, 1, 1])
-        with btn_col[1]:
+        col = st.columns([1, 1, 1])
+        with col[1]:
             sortear = st.button("Sortear agora!", use_container_width=True)
 
     if sortear:
@@ -208,7 +189,6 @@ if file is not None:
 
         moldura = f"""
         <div style="
-            border: 0;
             border-radius: 25px;
             padding: 3px;
             background: linear-gradient(82deg,#ff8070,#3d4ed7);
@@ -222,11 +202,10 @@ if file is not None:
                 padding: 30px;
                 color:white;
                 text-align:center;
-                font-family: Halcyon, Verdana, sans-serif;
             ">
                 <h3 style='margin-bottom:10px;'>🏆 Escola vencedora</h3>
                 <h3>{vencedor['branch_name']}</h3>
-                <p style='font-size:18px; margin-top:10px;'>CNPJ: <b>{formatar_cnpj(vencedor['cnpj'])}</b></p>
+                <p style='font-size:18px;'>CNPJ: <b>{formatar_cnpj(vencedor['cnpj'])}</b></p>
             </div>
         </div>
         """
