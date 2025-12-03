@@ -123,39 +123,26 @@ div.stButton > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-.top-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0;
-    gap: 40px;
-}
-
-.top-left img {
-    height: 160px;
-}
-
-.top-right h2 {
-    color: white;
-    font-size: 38px;
-    margin: 0;
-    padding: 0;
-}
-</style>
-
-<div class="top-row">
-    <div class="top-left">
+# ------------------------------------------------------------
+# LOGO CENTRALIZADA
+# ------------------------------------------------------------
+st.markdown(
+    """
+    <div class="logo-center">
         <img src="https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png">
     </div>
+    """,
+    unsafe_allow_html=True
+)
 
-    <div class="top-right">
-        <h2>Realizar sorteio</h2>
-    </div>
-</div>
+# ------------------------------------------------------------
+# TÍTULO
+# ------------------------------------------------------------
+st.markdown("""
+<h2 style='text-align:center;color:white; margin-top: 5px;'>
+    Realizar sorteio
+</h2>
 """, unsafe_allow_html=True)
-
 
 # ------------------------------------------------------------
 # UPLOAD
