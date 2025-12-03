@@ -48,6 +48,11 @@ html, body, .stApp {
 }
 
 .logo-center img {
+    height: 140px;
+    object-fit: contain;
+}
+
+.logo-center img {
     height: 80px;
     object-fit: contain;
 }
@@ -198,3 +203,4 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
