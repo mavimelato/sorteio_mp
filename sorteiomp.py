@@ -111,7 +111,7 @@ const interval = setInterval(() => {
     if (header) {
         if (!header.querySelector('.mp-logo')) {
             const img = document.createElement('img');
-            img.src = 'logomp.png';   // caminho da imagem
+            img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';   // caminho da imagem
             img.className = 'mp-logo';
             img.style.height = '45px';
             img.style.marginLeft = '10px';
@@ -212,3 +212,4 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
