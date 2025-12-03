@@ -111,20 +111,19 @@ const interval = setInterval(() => {
     if (header) {
         if (!header.querySelector('.mp-logo')) {
             const img = document.createElement('img');
-            img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';   // caminho da imagem
+            img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';
             img.className = 'mp-logo';
             img.style.height = '45px';
             img.style.marginLeft = '10px';
             img.style.objectFit = 'contain';
             img.style.display = 'block';
-            header.prepend(img);  // coloca a logo no canto ESQUERDO
+            header.prepend(img);    // adiciona a logo à esquerda
         }
         clearInterval(interval);
     }
 }, 100);
 </script>
 """, unsafe_allow_html=True)
-
 # ------------------------------------------------------------
 # TÍTULO
 # ------------------------------------------------------------
@@ -212,4 +211,5 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
