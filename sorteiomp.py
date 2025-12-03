@@ -40,16 +40,23 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
-/* remove padding e margin global */
+/* Remove qualquer margem/padding superior */
 html, body, .stApp {
-    padding: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+    overflow: hidden; /* remove rolagem vertical */
 }
 
-/* remove padding superior padrão do Streamlit */
+/* Coloca todo o conteúdo dentro da altura da tela */
 section.main > div.block-container {
     padding-top: 0 !important;
     margin-top: 0 !important;
+    height: 100vh !important; /* força ocupar exatamente a altura da tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* ou: center (se quiser centralizar tudo) */
+    align-items: center;
 }
 
 /* LOGO CENTRALIZADA */
@@ -210,6 +217,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
