@@ -15,7 +15,7 @@ def formatar_cnpj(cnpj):
 st.set_page_config(
     page_title="Sorteio | Matrícula Premiada",
     page_icon="https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png",
-    layout="wide"
+    layout="centered"
 )
 
 # REMOVER NAVBAR NATIVA
@@ -218,6 +218,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
