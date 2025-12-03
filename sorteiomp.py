@@ -65,8 +65,8 @@ div[data-testid="stToolbar"] {
 /* LOGO CENTRALIZADA */
 .logo-center {
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .logo-center img {
@@ -220,6 +220,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
