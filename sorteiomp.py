@@ -54,7 +54,7 @@ html, body, .stApp {
 
 /* Remove espaçamento do topo quando a navbar some */
 section.main > div {
-    padding-top: 10 !important;
+    padding-top: 0 !important;
 }
 
 /* BOTÕES */
@@ -203,6 +203,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
