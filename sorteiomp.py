@@ -40,23 +40,26 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
-/* Remove qualquer margem/padding superior */
-html, body, .stApp {
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 100%;
-    overflow: hidden; /* remove rolagem vertical */
-}
-
-/* Coloca todo o conteúdo dentro da altura da tela */
-section.main > div.block-container {
+/* Remove padding e margem do container principal */
+main .block-container {
     padding-top: 0 !important;
     margin-top: 0 !important;
-    height: 100vh !important; /* força ocupar exatamente a altura da tela */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* ou: center (se quiser centralizar tudo) */
-    align-items: center;
+}
+
+/* Remove espaço global do app */
+.stApp {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Remove navbar nativa */
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+
+/* Remove espaço automático que aparece quando header é removido */
+div[data-testid="stToolbar"] {
+    display: none !important;
 }
 
 /* LOGO CENTRALIZADA */
@@ -217,6 +220,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
