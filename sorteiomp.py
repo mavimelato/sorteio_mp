@@ -111,7 +111,7 @@ svg {
 # ------------------------------------------------------------
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.image("logomp.svg", width=90)
+st.image("logomp.png", width=90)
 
 # ------------------------------------------------------------
 # TÍTULO CENTRALIZADO
@@ -211,6 +211,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
