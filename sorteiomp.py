@@ -40,26 +40,24 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
-/* Remove padding e margem do container principal */
-main .block-container {
+/* REMOVE DEFINITIVAMENTE O ESPAÇO SUPERIOR DO APP */
+section.main > div.block-container {
     padding-top: 0 !important;
     margin-top: 0 !important;
 }
 
-/* Remove espaço global do app */
-.stApp {
+section[data-testid="stMain"] > div {
+    padding-top: 0 !important;
+}
+
+div.block-container {
     padding-top: 0 !important;
     margin-top: 0 !important;
 }
 
-/* Remove navbar nativa */
-header[data-testid="stHeader"] {
-    display: none !important;
-}
-
-/* Remove espaço automático que aparece quando header é removido */
-div[data-testid="stToolbar"] {
-    display: none !important;
+/* força remover qualquer espaço restante */
+main {
+    padding-top: 0 !important;
 }
 
 /* LOGO CENTRALIZADA */
@@ -220,6 +218,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
