@@ -48,8 +48,13 @@ html, body, .stApp {
 }
 
 .logo-center img {
-    height: 140px;
+    height: 180px;
     object-fit: contain;
+}
+
+/* Remove espaçamento do topo quando a navbar some */
+section.main > div {
+    padding-top: 10 !important;
 }
 
 /* BOTÕES */
@@ -198,5 +203,6 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
