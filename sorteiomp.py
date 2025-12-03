@@ -18,27 +18,17 @@ st.set_page_config(
     layout="centered"
 )
 
-# INSERIR LOGO NA NAVBAR 
-components.html("""
-    <script>
-        const checkHeader = setInterval(() => {
-            const header = window.parent.document.querySelector('header[data-testid="stHeader"]');
-            if (header && !header.querySelector('.mp-logo')) {
-                const img = document.createElement('img');
-                img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';
-                img.className = 'mp-logo';
-                img.style.height = '45px';
-                img.style.marginLeft = '55px';
-                img.style.objectFit = 'contain';
-                header.prepend(img);
-                clearInterval(checkHeader);
-            }
-        }, 200);
-    </script>
-""", height=0)
+# REMOVER NAVBAR NATIVA
+st.markdown("""
+<style>
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ------------------------------------------------------------
-# CSS GLOBAL + NAVBAR ESCURA
+# CSS GLOBAL
 # ------------------------------------------------------------
 st.markdown("""
 <style>
@@ -50,19 +40,16 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
-/* NAVBAR ESCURA */
-header[data-testid="stHeader"] {
-    background-color: #000025 !important;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    padding-left: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    box-shadow: none !important;
+/* LOGO CENTRALIZADA */
+.logo-center {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
-.st-emotion-cache-18ni7ap, .st-emotion-cache-1dp5vir {
-    background: transparent !important;
+.logo-center img {
+    height: 80px;
+    object-fit: contain;
 }
 
 /* BOTÕES */
@@ -117,10 +104,22 @@ div.stButton > button:hover {
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
+# LOGO CENTRALIZADA
+# ------------------------------------------------------------
+st.markdown(
+    """
+    <div class="logo-center">
+        <img src="https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# ------------------------------------------------------------
 # TÍTULO
 # ------------------------------------------------------------
 st.markdown("""
-<h2 style='text-align:center;color:white;'>
+<h2 style='text-align:center;color:white; margin-top: 5px;'>
     Realizar sorteio
 </h2>
 """, unsafe_allow_html=True)
@@ -199,9 +198,3 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
-
-
-
-
-
-
