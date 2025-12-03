@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import random
 import time
+import streamlit.components.v1 as components
 
 def formatar_cnpj(cnpj):
     """Formatar CNPJ para 00.000.000/0000-00"""
@@ -17,7 +18,28 @@ st.set_page_config(
 )
 
 # ------------------------------------------------------------
-# CSS GLOBAL + NAVBAR
+# INSERIR LOGO NA NAVBAR (FUNCIONA NO STREAMLIT CLOUD)
+# ------------------------------------------------------------
+components.html("""
+    <script>
+        const checkHeader = setInterval(() => {
+            const header = window.parent.document.querySelector('header[data-testid="stHeader"]');
+            if (header && !header.querySelector('.mp-logo')) {
+                const img = document.createElement('img');
+                img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';
+                img.className = 'mp-logo';
+                img.style.height = '45px';
+                img.style.marginLeft = '10px';
+                img.style.objectFit = 'contain';
+                header.prepend(img);
+                clearInterval(checkHeader);
+            }
+        }, 200);
+    </script>
+""", height=0)
+
+# ------------------------------------------------------------
+# CSS GLOBAL + NAVBAR ESCURA
 # ------------------------------------------------------------
 st.markdown("""
 <style>
@@ -40,18 +62,11 @@ header[data-testid="stHeader"] {
     box-shadow: none !important;
 }
 
-/* Remove fundos adicionais */
 .st-emotion-cache-18ni7ap, .st-emotion-cache-1dp5vir {
     background: transparent !important;
 }
 
-/* APP STYLES */
-.title-text {
-    color: white;
-    font-size: 30px;
-    font-weight: 700;
-}
-
+/* BOTÕES */
 div.stButton > button {
     background-image: linear-gradient(82deg, #ff8070, #3d4ed7);
     color: #ffffff;
@@ -69,6 +84,7 @@ div.stButton > button:hover {
     transform: scale(1.04);
 }
 
+/* UPLOAD */
 .custom-upload > label {
     background-color: #1a1a5a;
     padding: 20px;
@@ -102,37 +118,10 @@ div.stButton > button:hover {
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------
-# INSERIR LOGO NA NAVBAR (SOLUÇÃO DEFINITIVA)
-# ------------------------------------------------------------
-st.markdown("""
-<script>
-const interval = setInterval(() => {
-    const header = window.parent.document.querySelector('header[data-testid="stHeader"]');
-    if (header) {
-        if (!header.querySelector('.mp-logo')) {
-            const img = document.createElement('img');
-            img.src = 'https://raw.githubusercontent.com/mavimelato/sorteio_mp/main/logomp.png';
-            img.className = 'mp-logo';
-            img.style.height = '45px';
-            img.style.marginLeft = '10px';
-            img.style.objectFit = 'contain';
-            img.style.display = 'block';
-            header.prepend(img);    // adiciona a logo à esquerda
-        }
-        clearInterval(interval);
-    }
-}, 100);
-</script>
-""", unsafe_allow_html=True)
-# ------------------------------------------------------------
 # TÍTULO
 # ------------------------------------------------------------
 st.markdown("""
-<h3 style='
-    text-align:center;
-    color:white;
-    font-family: Halcyon, Verdana, sans-serif;
-'>
+<h3 style='text-align:center;color:white;'>
     Realizar sorteio
 </h3>
 """, unsafe_allow_html=True)
@@ -211,6 +200,3 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
-
-
-
