@@ -40,9 +40,16 @@ html, body, .stApp {
     font-family: Halcyon, Verdana, sans-serif !important;
 }
 
-/* Remove espaçamento do topo quando a navbar some */
-section.main > div {
+/* remove padding e margin global */
+html, body, .stApp {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* remove padding superior padrão do Streamlit */
+section.main > div.block-container {
     padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 /* LOGO CENTRALIZADA */
@@ -203,6 +210,7 @@ if file is not None:
 
         placeholder.markdown(moldura, unsafe_allow_html=True)
         st.balloons()
+
 
 
 
